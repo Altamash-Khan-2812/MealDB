@@ -1,18 +1,37 @@
 import { Search } from "lucide-react";
+import { motion } from "framer-motion";
+import slideIn, { fadeIn } from "./animation";
 
 const Hero = () => {
   return (
-    <section
-      className="bg-[linear-gradient(to_top,rgba(0,0,0,0.3),rgba(0,0,0,0.2)),url('/Hero.jpg')] h-[100vh] bg-center bg-cover text-white flex flex-col items-center justify-center gap-8 px-2"
-    >
+    <section className="bg-[linear-gradient(to_top,rgba(0,0,0,0.3),rgba(0,0,0,0.2)),url('/Hero.jpg')] h-[100vh] bg-center bg-cover text-white flex flex-col items-center justify-center gap-8 px-2">
       <h1 className="text-5xl md:text-6xl text-center lg:text-7xl font-bold font-[playfair] leading-none tracking-normal mb-2">
         Welcome to <span className="text-amber-500">Recipe Finder</span>
       </h1>
       <p className="text-lg md:text-2xl text-center max-w-2xl text-amber-100">
-        Bringing you recipes that excite your taste buds and inspire your kitchen adventures.
+        Bringing you recipes that excite your taste buds and inspire your
+        kitchen adventures.
       </p>
+
+      {/* <motion.h1
+        variants={slideIn("top")}
+        initial="hidden"
+        whileInView="show"
+        className="text-5xl md:text-6xl text-center lg:text-7xl font-bold font-[playfair] leading-none tracking-normal mb-2"
+      >
+        Welcome to <span className="text-amber-500">Recipe Finder</span>
+      </motion.h1>
+      <motion.p
+        className="text-lg md:text-2xl text-center max-w-2xl text-amber-100"
+        variants={fadeIn()}
+        initial="hidden"
+        whileInView="show"
+      >
+        Bringing you recipes that excite your taste buds and inspire your
+        kitchen adventures.
+      </motion.p> */}
       <div className="flex flex-col md:flex-row gap-5">
-        <button className="flex items-center gap-3 bg-amber-600 px-6 py-3 rounded-full font-bold text-lg">
+        <button className="flex items-center gap-3 bg-amber-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-amber-800 cursor-pointer transition-all duration-500 hover:-translate-y-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -27,7 +46,7 @@ const Hero = () => {
           </svg>{" "}
           Today's Special
         </button>
-        <button className="flex items-center gap-3 text-amber-800 bg-white px-6 py-3 rounded-full font-bold text-lg">
+        <button className="flex items-center gap-3 text-amber-800 bg-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-500 hover:-translate-y-2">
           <Search /> Search a Recipe
         </button>
       </div>
