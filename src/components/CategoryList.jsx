@@ -4,6 +4,7 @@ import RecipeCard from "./RecipeCard";
 
 const CategoryList = () => {
   const [categories, setCateogries] = useState([]);
+  const [query, setQuery] = useState("");
   const API = "https://www.themealdb.com/api/json/v1/1/categories.php";
 
   const fetchMealByCateogries = async () => {
@@ -16,6 +17,10 @@ const CategoryList = () => {
     fetchMealByCateogries();
   }, []);
 
+  const filterCategories = categories.filter((category) => {
+    return category.strCategory.toLowerCase().includes(query.toLowerCase())
+  })  
+
   return (
     <section className="bg-amber-100 py-16 px-5 md:px-20 text-center">
       <h2 className="font-[playfair] text-amber-950 font-bold text-5xl mb-18">
@@ -26,19 +31,22 @@ const CategoryList = () => {
         <input
           className="text-amber-950 outline-0 rounded-full placeholder:text-amber-700 font-[inter] text-base w-full"
           placeholder="Search for Category"
+          onChange={(e) => setQuery(e.target.value)}
         />
       </div>
 
-      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(310px,1fr))] gap-10">
-        {
-          categories.map((item, index) => {
-            return (
-              <li key={index}>
-                <RecipeCard title={item.strCategory} img={item.strCategoryThumb} desc={item.strCategoryDescription}/>
-              </li>
-            )
-          })
-        }
+      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+        {filterCategories.map((item, index) => {
+          return (
+            <li key={index}>
+              <RecipeCard
+                title={item.strCategory}
+                img={item.strCategoryThumb}
+                desc={item.strCategoryDescription}
+              />
+            </li>
+          );
+        })}
       </ul>
     </section>
   );
