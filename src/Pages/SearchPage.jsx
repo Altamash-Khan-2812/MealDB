@@ -22,7 +22,7 @@ const SearchPage = () => {
     <section className="w-4xl mx-auto  pt-10">
       <BackButton />
       <h2 className="text-4xl text-gray-800 font-semibold text-center mb-8 mt-12">Find Your Perfect Recipe</h2>
-      <div className="flex mb-5 border-1 border-gray-300 shadow-sm flex items-center gap-3 py-4 rounded-lg px-3 focus-within:ring-2 focus-within:ring-orange-400 focus-within:border-1 focus-within:border-black focus-within:shadow-lg">
+      <div className="mb-5 border-1 border-gray-300 shadow-sm flex items-center gap-3 py-4 rounded-lg px-3 focus-within:ring-2 focus-within:ring-orange-400 focus-within:border-1 focus-within:border-black focus-within:shadow-lg">
         <Search className="text-gray-400 w-5"/>
         <input type="text" placeholder="Search for a region or area....." className="text-xl outline-0 w-full text-gray-700" value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
         <X className={`text-gray-500 hover:text-gray-900 ${inputValue.trim().length > 0 ? 'block' : 'hidden'}`} onClick={() =>setInputValue('')}/>
