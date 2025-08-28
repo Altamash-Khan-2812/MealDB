@@ -29,7 +29,7 @@ const CategoryList = () => {
       <div className="border border-amber-500 flex items-center gap-3 w-fit rounded-full py-3 pl-5 bg-white shadow-md focus-within:bg-amber-50 mx-auto mb-10">
         <Search className="text-amber-950 font-bold w-5 h-5" />
         <input
-          className="text-amber-950 outline-0 rounded-full placeholder:text-amber-700 font-[inter] text-base w-full"
+          className="text-amber-950 outline-0 placeholder:text-amber-700 font-[inter] text-base w-full"
           placeholder="Search for Category"
           onChange={(e) => setQuery(e.target.value)}
         />
