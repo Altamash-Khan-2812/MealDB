@@ -8,21 +8,21 @@ const SearchPage = () => {
   const [loading, setLoading] = useState(true);
 
   async function fetchCuisines() {
-    const res = await fetch(
-      "https://www.themealdb.com/api/json/v1/1/list.php?a=list"
-    );
-    const cuisines = await res.json();
-    setCuisines(cuisines.meals);
-    setLoading(false)
+    try {
+      const res = await fetch(
+        "https://www.themealdb.com/api/json/v1/1/list.php?a=list"
+      );
+      const cuisines = await res.json();
+      setCuisines(cuisines.meals);
+      setLoading(false);
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   useEffect(() => {
     fetchCuisines();
   }, []);
-
-  if(loading){
-    return <p>loading state to be added soon</p>
-  }
 
   return (
     <section className="w-4xl mx-auto  pt-10">
@@ -55,18 +55,27 @@ const SearchPage = () => {
           How to Search
         </h4>
         <ul className="flex flex-wrap gap-6">
-          {cuisines.map((cuisine, index) => {
-            console.log(cuisine);
-            return (
-              <li
-                key={index}
-                className="bg-orange-100 text-orange-800 px-2 py-1 font-[inter] rounded-full"
-              >
-                {cuisine.strArea}
-              </li>
-            );
-          })}
-        </ul>
+        {loading ?
+           Array.from({length: 20}).map((item, index) => {
+            return(
+               <li
+                  key={index}
+                  className="bg-orange-200 text-orange-800 w-20 h-8 font-[inter] rounded-full shadow-lg"
+                ></li>
+            )
+           })
+          :
+            cuisines.map((cuisine, index) => {
+              return (
+                <li
+                  key={index}
+                  className="bg-orange-100 text-orange-800 px-2 py-1 font-[inter] rounded-full"
+                >
+                  {cuisine.strArea}
+                </li>
+              );
+            })}
+          </ul>
       </div>
     </section>
   );
