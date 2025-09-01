@@ -68,7 +68,8 @@ const SearchPage = () => {
                 return (
                   <li
                     key={index}
-                    className="bg-orange-100 text-orange-800 px-2 py-1 font-[inter] rounded-full"
+                    className="bg-orange-100 text-orange-800 px-2 py-1 font-[inter] rounded-full cursor-pointer"
+                    onClick={() =>setInputValue(cuisine.strArea)}
                   >
                     {cuisine.strArea}
                   </li>

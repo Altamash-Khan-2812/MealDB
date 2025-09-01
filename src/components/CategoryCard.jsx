@@ -14,7 +14,7 @@ export default function RecipeCard({
   img,
 }) {
   return (
-    <Card className="h-[400px] text-left rounded-2xl overflow-hidden shadow-md transition hover:shadow-lg group pt-0 transition-all duration-700 hover:-translate-y-2.5">
+    <Card className="h-[400px] text-left rounded-2xl overflow-hidden shadow-md transition hover:shadow-lg group pt-0 duration-700 hover:-translate-y-2.5">
       <div className="relative h-48 w-full overflow-hidden mb-5">
         <div className="absolute inset-0 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
         <img
