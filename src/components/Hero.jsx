@@ -1,12 +1,33 @@
 import { Search } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [randomMeal, setRandomMeal] = useState(null);
+
+  function handleTodaysSpecial() {
+    navigate(`/today's-special/${randomMeal.strMeal}`,{
+      state: randomMeal
+    });
+  }
 
   function handleSearchButton() {
     navigate("/search");
   }
+
+  async function fetchRandomMeal() {
+    const res = await fetch(
+      "https://www.themealdb.com/api/json/v1/1/random.php"
+    );
+    const randomMeal = await res.json();
+    setRandomMeal(randomMeal.meals[0]);    
+  }
+
+  useEffect(() => {
+    fetchRandomMeal();
+  }, []);
+
   return (
     <section className="bg-[linear-gradient(to_top,rgba(0,0,0,0.3),rgba(0,0,0,0.2)),url('/Hero.jpg')] h-[100vh] bg-center bg-cover text-white flex flex-col items-center justify-center gap-8 px-2">
       <h1 className="text-5xl md:text-6xl text-center lg:text-7xl font-bold font-[playfair] leading-none tracking-normal mb-2">
@@ -17,7 +38,10 @@ const Hero = () => {
         kitchen adventures.
       </p>
       <div className="flex flex-col md:flex-row gap-5">
-        <button className="flex items-center gap-3 bg-amber-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-amber-800 cursor-pointer transition-all duration-500 hover:-translate-y-2">
+        <button
+          className="flex items-center gap-3 bg-amber-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-amber-800 cursor-pointer transition-all duration-500 hover:-translate-y-2"
+          onClick={handleTodaysSpecial}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"

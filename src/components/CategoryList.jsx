@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Search } from "lucide-react";
-import RecipeCard from "./RecipeCard";
+import RecipeCard from "./CategoryCard";
 
 const CategoryList = () => {
   const [categories, setCateogries] = useState([]);
