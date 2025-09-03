@@ -21,7 +21,8 @@ const Hero = () => {
       "https://www.themealdb.com/api/json/v1/1/random.php"
     );
     const randomMeal = await res.json();
-    setRandomMeal(randomMeal.meals[0]);    
+    setRandomMeal(randomMeal.meals[0]); 
+    console.log('randomMeal.meals[0]', randomMeal.meals[0])   
   }
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="bg-[linear-gradient(to_top,rgba(0,0,0,0.3),rgba(0,0,0,0.2)),url('/Hero.jpg')] h-[100vh] bg-center bg-cover text-white flex flex-col items-center justify-center gap-8 px-2">
+    <section className="bg-[linear-gradient(to_top,rgba(0,0,0,0.3),rgba(0,0,0,0.2)),url('/Hero-red.jpg')] h-[100vh] bg-center bg-cover text-white flex flex-col items-center justify-center gap-8 px-2">
       <h1 className="text-5xl md:text-6xl text-center lg:text-7xl font-bold font-[playfair] leading-none tracking-normal mb-2">
         Welcome to <span className="text-amber-500">Recipe Finder</span>
       </h1>
