@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import BackButton from "./BackButton";
 import { useState } from "react";
 
+
 const SingleMeal = () => {
   const location = useLocation();
   const [expanded, setExpanded] = useState(false);
@@ -9,9 +10,9 @@ const SingleMeal = () => {
   console.log(meal);
 
   return (
-    <section className="w-6xl mx-auto mt-8">
+    <section className="w-6xl mx-auto mt-14">
       <BackButton />
-      <div className="flex gap-8 mt-10">
+      <div className="flex gap-8 my-14">
         <img src={meal.strMealThumb} className="rounded-2xl w-[50%] h-full" />
         <div className="w-[50%] flex flex-col justify-between">
           <h2 className="text-4xl font-semibold font-[inter] text-gray-900 mb-4">
@@ -41,6 +42,7 @@ const SingleMeal = () => {
           </div>
         </div>
       </div>
+      <a href={meal.strYoutube} className="flex items-center justify-center gap-3 rounded-lg py-3 bg-red-600 hover:bg-red-700 text-xl text-white"><ion-icon name="logo-youtube"></ion-icon> Watch on Youtube</a>
     </section>
   );
 };
