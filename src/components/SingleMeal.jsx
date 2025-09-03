@@ -38,11 +38,11 @@ const SingleMeal = () => {
             </p>
             <button className="text-blue-600 text-lg hover:underline w-full text-left hover:text-blue-800 cursor-pointer focus:outline-none border-b-1 pb-7" onClick={() => setExpanded(!expanded)}>{expanded ? 'Read Less' : 'Read More'}</button>
             <p className="text-xl text-gray-800 pt-5 mb-3">Source</p>
-            <a href={meal.strSource} className="text-orange-600 hover:text-orange-700 hover:underline">{meal.strSource}</a>
+            <a href={meal.strSource} target="_blank" className="text-orange-600 hover:text-orange-700 hover:underline">{meal.strSource}</a>
           </div>
         </div>
       </div>
-      <a href={meal.strYoutube} className="flex items-center justify-center gap-3 rounded-lg py-3 bg-red-600 hover:bg-red-700 text-xl text-white"><ion-icon name="logo-youtube"></ion-icon> Watch on Youtube</a>
+      <a href={meal.strYoutube} target="_blank" className="flex items-center justify-center gap-3 rounded-lg py-3 bg-red-600 hover:bg-red-700 text-xl text-white"><ion-icon name="logo-youtube"></ion-icon> Watch on Youtube</a>
     </section>
   );
 };
