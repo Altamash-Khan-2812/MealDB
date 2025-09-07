@@ -5,21 +5,32 @@ import RecipeCard from "./CategoryCard";
 const CategoryList = () => {
   const [categories, setCateogries] = useState([]);
   const [query, setQuery] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const API = "https://www.themealdb.com/api/json/v1/1/categories.php";
 
   const fetchMealByCateogries = async () => {
-    const res = await fetch(API);
-    const data = await res.json();
-    setCateogries(data.categories);
+    try {
+      const res = await fetch(API);
+      const data = await res.json();
+      setCateogries(data.categories);
+    } catch (error) {
+      setError(true);
+    }
+    setLoading(false);
   };
 
   useEffect(() => {
     fetchMealByCateogries();
   }, []);
 
+  if(loading){
+    return <p className="text-center text-3xl my-10 text-amber-950">Fetching Categories...</p>
+  }
+
   const filterCategories = categories.filter((category) => {
-    return category.strCategory.toLowerCase().includes(query.toLowerCase())
-  })  
+    return category.strCategory.toLowerCase().includes(query.toLowerCase());
+  });
 
   return (
     <section className="bg-amber-100 py-16 px-5 md:px-20 text-center">
