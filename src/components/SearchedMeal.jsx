@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import RecipeCard from "./CategoryCard";
 
 const MealBySearch = ({ region }) => {
   const [searchedMeals, setSearchedMeals] = useState([]);
@@ -15,7 +14,7 @@ const MealBySearch = ({ region }) => {
 
   useEffect(() => {
     fetchMeals();
-  }, []);
+  }, [region]);
 
   return (
     <section className="mb-10">
@@ -23,11 +22,21 @@ const MealBySearch = ({ region }) => {
         Search for: <span className="text-amber-950 font-serif">{region}</span>
       </p>
 
-      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {searchedMeals.map((meal, index) => {
           return (
-            <RecipeCard key={index} className="h-[300px]" img={meal.strMealThumb} title={meal.strMeal} />
-          )
+            <li className="rounded-lg shadow-lg flex flex-col items-start gap-3 group transition-all duration-700 hover:-translate-y-2.5">
+              <img
+                src={meal.strMealThumb}
+                className="w-full h-40 object-cover rounded-t-lg"
+              />
+                <p className="text-xl text-amber-900 font-semibold text-center ml-4">{meal.strMeal}</p>
+                <span className="bg-amber-100 text-amber-800 px-2 rounded-full ml-4 mb-5">{`# ${region}`}</span>
+                <button className=" block rounded-full opacity-0 group-hover:opacity-100 text-amber-800 bg-amber-100 hover:bg-amber-100 hover:cursor-pointer ml-4 px-3 py-1.5 mb-2">
+                  View Recipe →
+                </button>
+            </li>
+          );
         })}
       </ul>
     </section>
