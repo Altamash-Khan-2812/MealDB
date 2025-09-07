@@ -5,6 +5,7 @@ import { useState } from "react";
 const SingleMeal = () => {
   const location = useLocation();
   const [expanded, setExpanded] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   let ingredientsArr = [];
   const meal = location.state;
   console.log("meal", meal);
@@ -22,7 +23,19 @@ const SingleMeal = () => {
     <section className="w-6xl mx-auto mt-14">
       <BackButton />
       <div className="flex gap-8 my-14">
-        <img src={meal.strMealThumb} className="rounded-2xl w-[50%] h-full" />
+        <div className="relative w-[50%]">
+          {!imageLoaded && (
+            <div className="w-full h-full bg-gray-200 animate-pulse rounded-2xl absolute top-0 left-0" />
+          )}
+          <img
+            src={meal.strMealThumb}
+            alt={meal.strMeal}
+            onLoad={() => setImageLoaded(true)}
+            className={`rounded-2xl w-full h-full object-cover transition-opacity duration-500 ${
+              imageLoaded ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        </div>
         <div className="w-[50%] flex flex-col justify-between">
           <h2 className="text-4xl font-semibold font-[inter] text-gray-900 mb-4">
             {meal.strMeal}
@@ -73,7 +86,9 @@ const SingleMeal = () => {
       </a>
 
       <ul className="border-1 border-gray-200 shadow-sm border-t-0 rounded-b-lg p-5 mb-10 flex flex-col gap-3">
-        <p className="text-3xl font-semibold text-gray-900 pb-3 border-b-1 border-gray-200">Ingredients</p>
+        <p className="text-3xl font-semibold text-gray-900 pb-3 border-b-1 border-gray-200">
+          Ingredients
+        </p>
         {ingredientsArr.map((ingredient, index) => {
           return (
             <li key={index} className="flex gap-3 mt-2">
