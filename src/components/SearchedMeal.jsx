@@ -23,10 +23,21 @@ const MealBySearch = ({ region }) => {
     fetchMeals();
   }, [region]);
 
-  if(loading){
+  if (loading) {
     return (
-        <p className="text-center text-2xl text-amber-800">Fetching meals for {region}...</p>
-    )
+      <p className="text-center text-2xl text-amber-800">
+        Fetching meals for {region}...
+      </p>
+    );
+  }
+
+  if (error) {
+    return (
+      <p className="text-center text-2xl text-amber-800">
+        Oops! Something went wrong while fetching meals. <br />
+        Please try again in a moment.
+      </p>
+    );
   }
 
   return (
