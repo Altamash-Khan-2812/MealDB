@@ -79,7 +79,7 @@ const SearchComponent = ({setSearchRegion}) => {
                 return (
                   <li
                     key={index}
-                    className="bg-orange-100 text-orange-800 px-2 py-1 font-[inter] rounded-full cursor-pointer"
+                    className="bg-orange-100 text-orange-800 px-2 py-1 font-[inter] rounded-full cursor-pointer hover:bg-orange-800 hover:text-orange-50"
                     onClick={() => setInputValue(cuisine.strArea)}
                   >
                     {cuisine.strArea}
