@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MealBySearch = ({ region }) => {
   const [searchedMeals, setSearchedMeals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
   async function fetchMeals() {
     try {
@@ -17,6 +19,12 @@ const MealBySearch = ({ region }) => {
       setError(true);
     }
     setLoading(false);
+  }
+
+  function handleMealClick(mealId) {
+    navigate(`/meal/${mealId}`, {
+      state: mealId,
+    });
   }
 
   useEffect(() => {
@@ -52,6 +60,7 @@ const MealBySearch = ({ region }) => {
             <li
               key={index}
               className="rounded-lg shadow-lg flex flex-col items-start gap-3 group transition-all duration-700 hover:-translate-y-2.5"
+              onClick={() => handleMealClick(meal.idMeal)}
             >
               <img
                 src={meal.strMealThumb}

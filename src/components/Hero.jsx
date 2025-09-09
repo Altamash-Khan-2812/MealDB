@@ -7,7 +7,7 @@ const Hero = () => {
   const [randomMeal, setRandomMeal] = useState(null);
 
   function handleTodaysSpecial() {
-    navigate(`/today's-special/${randomMeal.strMeal}`,{
+    navigate(`/meal/${randomMeal.strMeal}`,{
       state: randomMeal
     });
   }

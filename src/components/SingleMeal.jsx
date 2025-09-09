@@ -1,14 +1,34 @@
 import { useLocation } from "react-router-dom";
 import BackButton from "./BackButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const SingleMeal = () => {
   const location = useLocation();
   const [expanded, setExpanded] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [meal, setMeal] = useState({});
   const [imageLoaded, setImageLoaded] = useState(false);
   let ingredientsArr = [];
-  const meal = location.state;
-  console.log("meal", meal);
+  const data = location.state;
+  console.log(data);
+
+  async function fetchMeal() {
+    if (data.idMeal) {
+      setMeal(data);
+    } else {
+      const res = await fetch(
+        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${data}`
+      );
+      const mealDetails = await res.json();
+      setMeal(mealDetails.meals[0]);
+      console.log("meal;Datealos", mealDetails.meals[0]);
+    }
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    fetchMeal();
+  }, [data]);
 
   for (let i = 0; i <= 20; i++) {
     if (meal?.[`strIngredient${i}`] && meal?.[`strMeasure${i}`]) {
@@ -17,6 +37,10 @@ const SingleMeal = () => {
         measure: meal?.[`strMeasure${i}`],
       });
     }
+  }
+
+  if(loading){
+    return <p className="text-center mt-[10vh]  text-amber-900 text-5xl font-serif">Loading</p>
   }
 
   return (
