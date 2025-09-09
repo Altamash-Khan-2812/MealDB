@@ -24,8 +24,21 @@ const CategoryList = () => {
     fetchMealByCateogries();
   }, []);
 
-  if(loading){
-    return <p className="text-center text-3xl my-10 text-amber-950">Fetching Categories...</p>
+  if (loading) {
+    return (
+      <p className="text-center text-3xl my-10 text-amber-950">
+        Fetching Categories...
+      </p>
+    );
+  }
+
+  if (error) {
+    return (
+      <p className="text-center text-3xl my-10 text-amber-950">
+        Sorry! We couldn't load the categories right now. <br />
+        Please refresh the page or try again in a few moments.
+      </p>
+    );
   }
 
   const filterCategories = categories.filter((category) => {
