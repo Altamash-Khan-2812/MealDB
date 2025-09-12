@@ -2,8 +2,7 @@ import { Search, X } from "lucide-react";
 import BackButton from "@/components/BackButton";
 import { useEffect, useState } from "react";
 
-
-const SearchComponent = ({setSearchRegion}) => {
+const SearchComponent = ({ setSearchRegion }) => {
   const [cuisines, setCuisines] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(true);
@@ -29,6 +28,7 @@ const SearchComponent = ({setSearchRegion}) => {
     e.preventDefault();
     if (inputValue.trim()) {
       setSearchRegion(inputValue);
+      sessionStorage.setItem("searchedCategory", JSON.stringify(inputValue));
       setInputValue("");
     }
   }
@@ -92,4 +92,4 @@ const SearchComponent = ({setSearchRegion}) => {
   );
 };
 
-export default SearchComponent
+export default SearchComponent;

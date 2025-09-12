@@ -7,12 +7,13 @@ const Hero = () => {
   const [randomMeal, setRandomMeal] = useState(null);
 
   function handleTodaysSpecial() {
-    navigate(`/meal/${randomMeal.strMeal}`,{
-      state: randomMeal
+    navigate(`/meal/${randomMeal.strMeal}`, {
+      state: randomMeal,
     });
   }
 
   function handleSearchButton() {
+    sessionStorage.removeItem("searchedCategory");
     navigate("/search");
   }
 
@@ -21,8 +22,8 @@ const Hero = () => {
       "https://www.themealdb.com/api/json/v1/1/random.php"
     );
     const randomMeal = await res.json();
-    setRandomMeal(randomMeal.meals[0]); 
-    console.log('randomMeal.meals[0]', randomMeal.meals[0])   
+    setRandomMeal(randomMeal.meals[0]);
+    console.log("randomMeal.meals[0]", randomMeal.meals[0]);
   }
 
   useEffect(() => {
